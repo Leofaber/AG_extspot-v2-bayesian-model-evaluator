@@ -30,5 +30,5 @@ Il tool calcola le distribuzioni normali di features che descrivono i blobs di c
   * PM  PIXELS MEAN (grey level)
 
 ## Aggiunta di un attributo
-* 1) Aggiungere il calcolo dell'attributo nel costruttore della classe `Blob` (co aggiunta di getter)
-* 2) Richiamare il nuovo attributo in printMeanAndDeviation( ... )
+1) Aggiungere il calcolo dell'attributo nel costruttore della classe `Blob` (co aggiunta di getter)
+2) Richiamare il nuovo attributo in printMeanAndDeviation( ... )

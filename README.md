@@ -15,16 +15,16 @@ Il tool calcola le distribuzioni normali di features che descrivono i blobs di c
 
 ## Output
 * BACKGROUND
- * AR  37.3845 16.5874
- * PH  1.22337 0.560462
- * PC  0.730668 1.17095
- * PM  13.6849 2.24028
+  * AR  37.3845 16.5874
+  * PH  1.22337 0.560462
+  * PC  0.730668 1.17095
+  * PM  13.6849 2.24028
 
 * FLUX
- * AR  100.483 35.8895
- * PH  4.14473 1.96385
- * PC  2.77525 1.2273
- * PM  9.37673 1.43904
+  * AR  100.483 35.8895
+  * PH  4.14473 1.96385
+  * PC  2.77525 1.2273
+  * PM  9.37673 1.43904
 
 * Legend: 
   * AR  AREA (degrees)

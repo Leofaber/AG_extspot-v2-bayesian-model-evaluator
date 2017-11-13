@@ -68,7 +68,7 @@ pair<vector<Blob *>,vector<Blob *>> BayesianModelEvaluator::getAllBlobsFromTrain
 	// flux blobs
 	vector<Blob *> fluxBlobs;
 	
-	cout << "* Look up for blobs in training set backgroud images.." << endl;
+	cout << "* Looking up for blobs in training set backgroud images.." << endl;
 	// look up for blobs in trainingSetBackgroundPath
 	for(vector<string>::iterator it=bgFileNames.begin() ; it < bgFileNames.end(); it++)
     	{
@@ -91,7 +91,7 @@ pair<vector<Blob *>,vector<Blob *>> BayesianModelEvaluator::getAllBlobsFromTrain
 	}
  
 
-	cout << "* Look up for blobs in training set flux images.." << endl;
+	cout << "* Looking up for blobs in training set flux images.." << endl;
 	// look up for blobs in trainingSetBackgroundPath
 	for(vector<string>::iterator it=fluxFileNames.begin() ; it < fluxFileNames.end(); it++)
     	{
@@ -106,21 +106,65 @@ pair<vector<Blob *>,vector<Blob *>> BayesianModelEvaluator::getAllBlobsFromTrain
 		// search blobs
 		vector<Blob *> blobs = BlobsFinder::findBlobs(fitsFilePath, map.image, map.rows, map.cols, CDELT1, CDELT2);
 	
+		int countFlux = 0;
 		// handling background blobs found in flux images
 		for(vector<Blob *>::iterator it = blobs.begin() ; it < blobs.end(); it++){
 
 			Blob * b = *it;
-
-			if( b->isCentered() && ( b->getNumberOfPhotonsInBlob()>1 ) )	
+			
+			if( b->isCentered() && ( b->getNumberOfPhotonsInBlob()>1 ) && countFlux==0 ){
 				// add blobs to flux blobs list
 				fluxBlobs.push_back(b);
-			else
+				countFlux++;
+			}
+			//else
 				// add blobs to bg blobs list
-				bgBlobs.push_back(b);
+				//bgBlobs.push_back(b);
 		}
- 
+		
+		/* DEBUGGIN 
+		// sommo tutti i fotoni dell'immagine
+		int countTotalPhotons = 0;
+		for(vector<Blob *>::iterator it = blobs.begin() ; it < blobs.end(); it++){
+			Blob * b = *it;
+			countTotalPhotons += b->getNumberOfPhotonsInBlob();
+		}
+		
+		// nell'immagine non si trova flusso perchè tutti i blob han solo 1 fotone
+		if(countFlux == 0 && countTotalPhotons == blobs.size() ){
+			// NIENTE.. TUTTO OK..
+		}
+		// nell'immagine non si trova flusso (esiste un blob con più di un fotone..)
+		else if(countFlux == 0 && countTotalPhotons > blobs.size()){
+			cout << "\n" << endl;			
+			cout << "NO FLUX!" << endl;			
+			cout << "Count flux: " << countFlux << " in " << fitsFilePath << endl;
+			for(vector<Blob *>::iterator it = blobs.begin() ; it < blobs.end(); it++){
+				Blob * b = *it;
+				cout << b->getCentroid().y << "," << b->getCentroid().x <<"#f: "<<b->getNumberOfPhotonsInBlob() << " is centered? " <<   b->isCentered() << endl;
+				
+			}
+		// nell'immagine troviamo un blob di flusso!
+		} else if(countFlux == 1){
+			// OK PERFETTO!
+		}
+		// nell'immagine troviamo più di un blob di flusso!
+		else if(countFlux > 1){
+			cout << "\n" << endl;
+			cout << "MANY FLUX! "<< endl;
+			cout << "Count flux: " << countFlux << " in " << fitsFilePath << endl;
+			for(vector<Blob *>::iterator it = blobs.begin() ; it < blobs.end(); it++){
+				Blob * b = *it;
+				cout << b->getCentroid().y << "," << b->getCentroid().x <<"#f: "<<b->getNumberOfPhotonsInBlob() << " is centered? " <<   b->isCentered() << endl;
+			}
+ 			getchar();
+
+		}
+			
+ 		*/
 	}
- 
+	 
+
 	
 	cout << "* Number of background blobs: " << bgBlobs.size() <<endl;
 	cout << "* Number of flux blobs: " << fluxBlobs.size() <<endl;
@@ -137,6 +181,8 @@ void BayesianModelEvaluator::printMeanAndDeviation(string type, vector<Blob *>& 
 	vector<double> photons;
 	vector<double> photons_closeness;
 	vector<double> pixel_mean;
+	// ** add attribute
+
 
 	// population the attribute values vectors
 	for(vector<Blob*>::iterator i = allBlobs.begin(); i != allBlobs.end(); i++){
@@ -147,6 +193,9 @@ void BayesianModelEvaluator::printMeanAndDeviation(string type, vector<Blob *>& 
 		photons.push_back(b->getNumberOfPhotonsInBlob());
 		photons_closeness.push_back(b->getPhotonsCloseness());
 		pixel_mean.push_back(b->getPixelsMean());
+		// ** add attribute
+
+
 
 		/*
 		cout << "\n" << endl;
@@ -169,6 +218,7 @@ void BayesianModelEvaluator::printMeanAndDeviation(string type, vector<Blob *>& 
 	normal_distribution<double> PHOTONS_CLOSENESS = computeNormalDistribution(photons_closeness);
 
 	normal_distribution<double> PIXEL_MEAN = computeNormalDistribution(pixel_mean);
+	// ** add attribute
 
 	 
 	// print mean and deviation
@@ -177,7 +227,7 @@ void BayesianModelEvaluator::printMeanAndDeviation(string type, vector<Blob *>& 
 	cout << "PH  "<< PHOTONS.mean() 		<< " " << PHOTONS.stddev() 		<< endl;
 	cout << "PC  "<< PHOTONS_CLOSENESS.mean() 	<< " " << PHOTONS_CLOSENESS.stddev() 	<< endl;
 	cout << "PM  "<< PIXEL_MEAN.mean() 		<< " " << PIXEL_MEAN.stddev() 		<< endl;
-
+	// ** add attribute
 	
 	
 }

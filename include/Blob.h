@@ -17,14 +17,22 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include "AgileMap.h"
 
 using namespace std;
  
 struct CustomPoint{
-	int x; // colonne
-	int y; // righe
+	int y;  // righe
+	int x;	//colonne
+	CustomPoint(){
+		y = 0;
+		x = 0;
+	}
+	CustomPoint(int _y, int _x){
+		y = _y;
+		x = _x;
+	}
 };
-
 
 class Blob
 {
@@ -48,6 +56,11 @@ class Blob
         */
         CustomPoint getCentroid();
 
+ 	/**
+            Return the galactic centroid of the blob
+        */
+        CustomPoint getGalacticCentroid();
+
 
         /**
             Return the sum of all the grey levels of the pixels of the blob divided by the number of those pixels.
@@ -64,10 +77,10 @@ class Blob
         */
         int getNumberOfPixels();
 
-		/**
-			Return the blob's area (degree)
-		*/
-		double getArea();
+	/**
+		Return the blob's area (degree)
+	*/
+	double getArea();
 
         /**
             Return the number of photons inside the blob (before any stretching or smoothing)
@@ -93,6 +106,8 @@ class Blob
 
      private:
 
+	AgileMap agileMapTool;
+
 	string filePath;
 
         vector<CustomPoint> contour;
@@ -101,23 +116,25 @@ class Blob
 
         int numberOfPixels;
 
-		double pixelArea;
+	double pixelArea;
 
-		double blobArea;
+	double blobArea;
 	
         vector<CustomPoint> photonsInBlob;
 
         CustomPoint centroid;
+
+	CustomPoint galacticCentroid;
  	
-		double pixelMean;
+	double pixelMean;
 
         double photonsCloseness;
 
-
-       
- 		vector<CustomPoint> computePhotonsBlob(int ** photonImage);
+	vector<CustomPoint> computePhotonsBlob(int ** photonImage);
 
         CustomPoint computeCentroid();
+
+	CustomPoint computeGalacticCentroid();
        
         double computePixelMean();
         

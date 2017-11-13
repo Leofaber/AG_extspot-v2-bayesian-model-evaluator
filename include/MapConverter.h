@@ -15,7 +15,22 @@
 #include <string>
 
 using namespace std;
+/*
+class CustomPoint{
+	public:
+		CustomPoint();
+		CustomPoint(int _x, int _y){
+			x = _x;
+			y = _y;
+		}
+		void print(){
+			cout << "[" << y << "," << x << "] [row,col]" << endl; 
+		}
+		int x; // colonne
+		int y; // righe
+};
 
+*/
 //template <class T>
 class CustomMap {
 

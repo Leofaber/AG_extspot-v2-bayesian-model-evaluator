@@ -48,7 +48,7 @@ vector<Blob*> BlobsFinder::findBlobs(string filePath, int** data, int rows, int 
 		GAUSSIAN FILTERING
 	*/
 	BlobsFinder::gaussianBlur(&tempImage, Size(21, 21), 4); // 17x17   2.5    23x23   3
- 	//BlobsFinder::printImageInConsole(tempImage);
+  	//BlobsFinder::printImageInConsole(tempImage);
  	
  	// Convert Map . double ** 
 	double ** editedImage;
@@ -103,9 +103,7 @@ vector<Blob*> BlobsFinder::findBlobs(string filePath, int** data, int rows, int 
 			vector<CustomPoint> currentCustomContuorNoPadding;
 			for(vector<Point> ::iterator ii = currentContuorWithPadding.begin(); ii < currentContuorWithPadding.end(); ii++){
 				Point p = *ii;
-				CustomPoint cp;
-				cp.x = p.x-1;
-				cp.y = p.y-1;
+				CustomPoint cp(p.y-1,p.x-1);
 				currentCustomContuorNoPadding.push_back(cp);
 			}
 
@@ -172,10 +170,8 @@ vector<pair<CustomPoint,int>> BlobsFinder::computePixelsOfBlob(vector<Point>& c,
 			Point p(x,y);
 			double isInside = pointPolygonTest(c,p,false);
 			if( isInside >= 0 ){
-				CustomPoint cp;
 				// Removing padding
-				cp.x = p.x - 1;
-				cp.y = p.y - 1;
+				CustomPoint cp(p.y - 1, p.x - 1);
 				pixels.push_back(make_pair(cp,(int)image.at<uchar>(y,x)));
 			}
 		}	

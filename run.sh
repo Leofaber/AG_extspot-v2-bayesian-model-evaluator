@@ -13,6 +13,7 @@ cp ../AG_extspot-v2/src/Blob.cpp src/Blob.cpp
 cp ../AG_extspot-v2/include/BlobsFinder.h include/BlobsFinder.h
 cp ../AG_extspot-v2/src/BlobsFinder.cpp src/BlobsFinder.cpp
 
+
 # Map Converter
 cp ../AG_utils/include/FolderManager.h include/FolderManager.h
 cp ../AG_utils/src/FolderManager.cpp src/FolderManager.cpp

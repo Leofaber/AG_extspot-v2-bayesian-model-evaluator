@@ -1,6 +1,9 @@
 # AG_extspot-v2-bayesian-model-evaluator
 
-Il tool calcola le distribuzioni normali di features che descrivono i blobs di classe source e quelli di classe background. 
+Il tool calcola le distribuzioni normali di features che descrivono i blobs di classe source e quelli di classe background. Si utilizza la classe `BlobsFinder` per estrarre i `Blob` dalle immagini del training set. Un `Blob` estratto da un'immagine simulata con flusso, viene etichettato come flusso se e solo se:
+* è centrato
+* contiene un numero di fotoni > 1
+* è il primo blob etichettato come flusso per un'immagine x
 
 ## Input
 * Path al training test (la cartella del training set deve contenere due sottocartelle `bg` e `flux`)
@@ -12,16 +15,16 @@ Il tool calcola le distribuzioni normali di features che descrivono i blobs di c
 
 ## Output
 * BACKGROUND
-  * AR  48.487 32.8191
-  * PH  1.62088 1.38281
-  * PC  0.994316 1.53314
-  * PM  12.9332 2.2947
+ * AR  37.3845 16.5874
+ * PH  1.22337 0.560462
+ * PC  0.730668 1.17095
+ * PM  13.6849 2.24028
 
 * FLUX
-  * AR  98.1401 35.3572
-  * PH  4.19263 1.97705
-  * PC  2.52706 1.15786
-  * PM  9.33045 1.41381
+ * AR  100.483 35.8895
+ * PH  4.14473 1.96385
+ * PC  2.77525 1.2273
+ * PM  9.37673 1.43904
 
 * Legend: 
   * AR  AREA (degrees)

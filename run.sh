@@ -6,12 +6,12 @@ module load agile-B24-r5
 #export PFILES=/home/student/PARFILES
 
 #Blob
-cp ../AG_extspot-v2/include/Blob.h include/Blob.h
-cp ../AG_extspot-v2/src/Blob.cpp src/Blob.cpp
+cp ../AG_utils/include/Blob.h include/Blob.h
+cp ../AG_utils/src/Blob.cpp src/Blob.cpp
 
 # Blobs Finder
-cp ../AG_extspot-v2/include/BlobsFinder.h include/BlobsFinder.h
-cp ../AG_extspot-v2/src/BlobsFinder.cpp src/BlobsFinder.cpp
+cp ../AG_utils/include/BlobsFinder.h include/BlobsFinder.h
+cp ../AG_utils/src/BlobsFinder.cpp src/BlobsFinder.cpp
 
 
 # Map Converter

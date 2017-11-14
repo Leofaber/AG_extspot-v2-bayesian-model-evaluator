@@ -35,3 +35,10 @@ Il tool calcola le distribuzioni normali di features che descrivono i blobs di c
 ## Aggiunta di un attributo
 1) Aggiungere il calcolo dell'attributo nel costruttore della classe `Blob` (con aggiunta di getter)
 2) Richiamare il nuovo attributo in printMeanAndDeviation( ... )
+
+## Dipendenze
+* AG_utils
+  * Blob
+  * BlobsFinder
+  * FolderManager
+  * MapConverter

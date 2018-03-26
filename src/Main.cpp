@@ -5,7 +5,7 @@
  * Any information contained in this software
  * is property of the AGILE TEAM and is strictly
  * private and confidential.
- * 
+ *
  * https://github.com/Leofaber/AG_extspot-v2-bayesian-model-evaluator
 */
 
@@ -13,7 +13,8 @@
 #include "BayesianModelEvaluator.h"
 
 
-using namespace std;
+using std::cout;
+using std::endl;
 
 const char* startString = {
 "################################################################\n"
@@ -27,7 +28,7 @@ const char* endString = {
 
 
 int main(int argc, char*argv[]){
-	
+
 	cout << startString << endl;
 
 	string trainingSetPath = argv[1];
@@ -40,11 +41,14 @@ int main(int argc, char*argv[]){
 	cout << "CDELT2: "<< CDELT2 << endl;
 	cout << "PSF: "<< PSF << endl;
 
+	int kernelSize = (2 * PSF/CDELT2) + 1;
+	cout << "Smoothing with:\n * kernel size: ["<<kernelSize <<"x"<< kernelSize <<"] (formula: 2 * PSF/CDELT2 + 1)\n * sigma (PSF): "<< PSF << endl;
+
 	/*
 		It will print on console the MEAN and DEVIATIONS of all blob's attributes.
 	*/
 	BayesianModelEvaluator::computeModel(trainingSetPath, CDELT1, CDELT2, PSF );
-	
+
 
 
 	cout << endString << endl;

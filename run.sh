@@ -22,8 +22,8 @@ cp ../AG_utils/src/FolderManager.cpp src/FolderManager.cpp
 cp ../AG_utils/include/MapConverter.h include/MapConverter.h
 cp ../AG_utils/src/MapConverter.cpp src/MapConverter.cpp
 
-
+make clean
 make
 
-./bin/AG_extspot-v2-bayesian-model-evaluator TrainingSetShortTerm 0.5 0.5 4
+./bin/AG_extspot-v2-bayesian-model-evaluator TrainingSetShortTerm 0.5 0.5 7.5
 

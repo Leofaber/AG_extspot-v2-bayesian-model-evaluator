@@ -58,7 +58,9 @@ include/Blob.h
 include/BlobsFinder.h
 include/FolderManager.h
 include/MapConverter.h
+include/BayesianClassifierForBlobs.h
 src/Blob.cpp
 src/BlobsFinder.cpp
 src/FolderManager.cpp
 src/MapConverter.cpp
+src/BayesianClassifierForBlobs.cpp
